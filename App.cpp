@@ -1,7 +1,4 @@
 #include "include.h"
-//����:�������ֻ������Ƽ����޹�˾
-//���ǵĵ���:lobot-zone.taobao.com
-
 static bool UartBusy = FALSE;
 uint16 BatteryVoltage;
 PS2X ps2X;                                      
@@ -37,12 +34,12 @@ void InitTimer2(void)		//100us@12.000MHz
 void InitTimer1(void)
 {
 	cli();
-	TCCR1A=0; //�Ĵ���A������PWM�ģ���������ֻ��ʹ�ö�ʱ���ܣ���ʵ����Ҫ����
-	TCCR1B=(1<<CS12)|(1<<CS10);//�Ĵ���B�����ö�ʱ���ܵģ��������õ���1024��Ƶ
-	TCNT1=0XC2F6; //��������ֵ��1s��ʱ
+	TCCR1A=0; 
+	TCCR1B=(1<<CS12)|(1<<CS10);
+	TCNT1=0XC2F6; 
 //    TCNT1=0XFEC7;  // 20ms
-	TIMSK1=(1<<TOIE1); //����ж�ʹ��
-	sei(); //��ȫ���ж�
+	TIMSK1=(1<<TOIE1); //
+	sei(); //
 }
 
 
@@ -50,15 +47,15 @@ void InitTimer1(void)
 
 ISR(TIMER2_OVF_vect)
 {
-   TCNT2=6; //��ʱ��3�ж�  100us
+   TCNT2=6; //
    TimeCounter2++;
 }
 
-void ps2Handle() {                       //PS2 �ֱ� ����   
-  static uint32_t Timer;                 //���徲̬����Timer�� ���ڼ�ʱ         
-  if (Timer > millis())                 //Timer ���� millis���������е��ܺ�������ʱ���أ�//Timer С�� �����ܺ�����ʱ����������������
+void ps2Handle() {                       //
+  static uint32_t Timer;                 // 
+  if (Timer > millis())                 //Timer
     return;
-  ps2X.read_gamepad();                  //��ȡPS�ֱ���������
+  ps2X.read_gamepad();                  //
   Timer = millis() + 50;                    //?
 }
 
